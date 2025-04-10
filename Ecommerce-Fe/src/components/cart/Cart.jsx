@@ -56,7 +56,7 @@ const Cart = () => {
               </span>
             </div>
             <button
-              className="bg-primary mt-2 rounded-lg mx-auto w-full py-2"
+              className="bg-hero-gradient mt-2 rounded-lg mx-auto w-full py-2"
               type="button"
               onClick={() => navigate("/cart")}
             >

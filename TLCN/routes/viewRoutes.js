@@ -39,16 +39,16 @@ router.get("/", (req, res, next) => {
   res.status(200).render("dashboard",{title:"Dashboard"});
 });
 router.get("/analytics", (req, res, next) => {
-  res.status(200).render("analytic",{title:"Analytics"});
+  res.status(200).render("analytic",{title:"Thống kê"});
 });
 router.get("/users", (req, res, next) => {
-  res.status(200).render("user",{title:"Manage User"});
+  res.status(200).render("user",{title:"Quản lý người dùng"});
 });
 router.get("/products", (req, res, next) => {
-  res.status(200).render("product",{title:"Manage Product"});
+  res.status(200).render("product",{title:"Quản lý sản phẩm"});
 });
 router.get("/orders", (req, res, next) => {
-  res.status(200).render("order",{title:"Manage Order"});
+  res.status(200).render("order",{title:"Quản lý đơn hàng"});
 });
 router.get("/orders/:id", async (req, res, next) => {
   try {
@@ -69,7 +69,7 @@ router.get("/orders/:id", async (req, res, next) => {
   }
 });
 router.get("/imports", (req, res, next) => {
-  res.status(200).render("import",{title:"Manage Import"});
+  res.status(200).render("import",{title:"Quản lý nhập hàng"});
 });
 router.get("/imports/:id", async (req, res, next) => {
   try {
@@ -78,22 +78,22 @@ router.get("/imports/:id", async (req, res, next) => {
     const theDate = new Date(Date.parse(data.createdAt));
     const date = theDate.toLocaleString();
     data.date = date;
-    res.status(200).render("importDetail", { data ,title:"Import Detail"});
+    res.status(200).render("importDetail", { data ,title:"Nhập hàng chi tiết"});
   } catch (error) {
     res.status(200).render("404");
   }
 });
 router.get("/brands", (req, res, next) => {
-  res.status(200).render("brand",{title:"Manage Brand"});
+  res.status(200).render("brand",{title:"Quản lý thương hiệu"});
 });
 router.get("/categories", (req, res, next) => {
-  res.status(200).render("category" ,{title:"Manage Category"});
+  res.status(200).render("category" ,{title:"Quản lý danh mục"});
 });
 router.get("/reviews", (req, res, next) => {
-  res.status(200).render("review",{title:"Manage Review"});
+  res.status(200).render("review",{title:"Quản lý đánh giá"});
 });
 router.get("/locations", (req, res, next) => {
-  res.status(200).render("location",{title:"Manage Location"});
+  res.status(200).render("location",{title:"Quản lý địa chỉ"});
 });
 
 module.exports = router;

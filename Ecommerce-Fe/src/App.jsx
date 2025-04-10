@@ -9,6 +9,7 @@ import SignUpPage from "./page/SignUpPage";
 import VerifyPage from "./page/VerifyPage";
 import ResetPasswordPage from "./page/ResetPasswordPage";
 import ForgotPasswordPage from "./page/ForgotPasswordPage";
+import AboutPage from "./page/AboutPage";
 import UserAccount from "./module/UserProfile/UserAccount";
 import UserOrder from "./module/UserProfile/UserOrder";
 import UserAddress from "./module/UserProfile/UserAddress";
@@ -38,6 +39,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/sign-in" element={<SignInPage />}></Route>
           <Route path="/sign-up" element={<SignUpPage />}></Route>
           <Route path="/verify" element={<VerifyPage />}></Route>

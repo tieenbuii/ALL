@@ -18,7 +18,7 @@ const CartHidden = () => {
           Giỏ hàng chưa có sản phẩm nào
         </span>
         <button
-          className="px-3 py-3  rounded-lg bg-primary text-white"
+          className="px-3 py-3  rounded-lg bg-hero-gradient text-white"
           onClick={handleClick}
         >
           Mua sắm ngay

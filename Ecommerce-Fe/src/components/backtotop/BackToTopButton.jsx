@@ -22,7 +22,7 @@ const BackToTopButton = () => {
     <div>
       {backToTopButton && (
         <button
-          className="fixed bottom-[50px] right-[25px] p-2  bg-primary hover:bg-tertiary transition-all rounded-full z-1000"
+          className="fixed bottom-[50px] right-[25px] p-2  bg-hero-gradient hover:bg-tertiary transition-all rounded-full z-1000"
           onClick={scrollUp}
         >
           <span className="text-white font-bold">

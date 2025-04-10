@@ -10,6 +10,8 @@ const initialState = {
   statusBrand: action_status.IDLE,
   statusSearch: action_status.IDLE,
   statusProductBrand: action_status.IDLE,
+  statusCategory: action_status.IDLE, // Thêm cho category
+  statusProductCategory: action_status.IDLE, // Thêm cho products theo category
   totalPage: null,
   totalPageFilter: null,
   product: {},
@@ -18,8 +20,11 @@ const initialState = {
   productSearch: {},
   productBrand: {},
   brand: {},
+  category: {}, // Thêm cho categories
+  productCategory: {}, // Thêm cho products theo category
 };
 
+// Các thunk hiện có giữ nguyên
 export const getProduct = createAsyncThunk(
   "user/getProduct",
   async (payload) => {
@@ -52,6 +57,21 @@ export const getBrand = createAsyncThunk("user/getBrand", async (payload) => {
   return response.data;
 });
 
+// Thêm thunk cho categories
+export const getCategory = createAsyncThunk("user/getCategory", async (payload) => {
+  const response = await productApi.getCategory(); // Giả sử bạn sẽ thêm method này trong productApi
+  return response.data;
+});
+
+export const getProductCategory = createAsyncThunk(
+  "user/getProductCategory",
+  async (payload) => {
+    let query = `limit=15&category=${payload}`;
+    const response = await productApi.getAllProduct(query);
+    return response.data;
+  }
+);
+
 export const getProductFilter = createAsyncThunk(
   "user/getProductFilter",
   async (payload) => {
@@ -73,6 +93,7 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   extraReducers: {
+    // Các reducer hiện có
     [getProduct.pending]: (state, action) => {
       state.status = action_status.LOADING;
     },
@@ -135,7 +156,30 @@ const productSlice = createSlice({
     [getProductBrand.rejected]: (state, action) => {
       state.statusProductBrand = action_status.FAILED;
     },
+    
+    // Thêm reducers cho categories
+    [getCategory.pending]: (state, action) => {
+      state.statusCategory = action_status.LOADING;
+    },
+    [getCategory.fulfilled]: (state, action) => {
+      state.statusCategory = action_status.SUCCEEDED;
+      state.category = action.payload.data;
+    },
+    [getCategory.rejected]: (state, action) => {
+      state.statusCategory = action_status.FAILED;
+    },
+    [getProductCategory.pending]: (state, action) => {
+      state.statusProductCategory = action_status.LOADING;
+    },
+    [getProductCategory.fulfilled]: (state, action) => {
+      state.statusProductCategory = action_status.SUCCEEDED;
+      state.productCategory = action.payload.data;
+    },
+    [getProductCategory.rejected]: (state, action) => {
+      state.statusProductCategory = action_status.FAILED;
+    },
   },
 });
+
 const { actions, reducer } = productSlice;
 export default reducer;

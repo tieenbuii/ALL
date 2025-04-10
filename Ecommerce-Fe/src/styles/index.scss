@@ -46,7 +46,7 @@ input::-moz-input-placeholder {
 }
 
 .clock {
-  background-image: linear-gradient(to right bottom, #BF2929, #BF2929);
+  background: linear-gradient(#f52f32, #e11b1e);
 }
 
 .profile:hover .dropdown {
@@ -103,19 +103,19 @@ input::-webkit-inner-spin-button {
 }
 
 // ProductDetailPage
-.ProductDetail {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 350px;
-  padding: 40px 0px;
-  gap: 0 30px;
-}
+// .ProductDetail {
+//   display: grid;
+//   grid-template-columns: minmax(0, 1fr) 350px;
+//   padding: 40px 0px;
+//   gap: 0 30px;
+// }
 .Information-product {
   display: grid;
   grid-template-columns: 360px minmax(0, 1fr);
 }
 .ProductDescription {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 460px;
+  // display: grid;
+  // grid-template-columns: minmax(0, 1fr) 460px;
   margin: 20px 0;
   width: 100%;
   background-color: white;

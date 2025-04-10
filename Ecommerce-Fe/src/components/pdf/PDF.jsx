@@ -8,7 +8,7 @@ const PDF = ({ componentRef }) => {
     <div className="hidden">
       <div className="flex flex-col pt-8" ref={componentRef}>
         <span className="text-2xl mx-auto text-tertiary font-medium">
-          BÁO GIÁ SẢN PHẨM TỪ PINEPERFUME
+          BÁO GIÁ SẢN PHẨM
         </span>
         {cart?.length > 0 &&
           cart.map((item) => (

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductItem from "./ProductItem";
 import slugify from "slugify";
 import Pagination from "react-js-pagination";
 import ModalAdvanced from "../../components/Modal/ModalAdvanced";
-import { useEffect } from "react";
 import { formatPrice } from "../../utils/formatPrice";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
@@ -12,15 +11,22 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
   const navigate = useNavigate();
   const bodyStyle = document.body.style;
   const [showModal, setShowModal] = useState(false);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const handleClick = (item) => {
     const path = slugify(item.title, { strict: true });
     navigate(`/${path}/${item._id}`);
   };
-  const [selectedItems, setSelectedItems] = useState([]);
 
   const addToCompare = (item) => {
-    setSelectedItems((selectedItems) => [...selectedItems, item]);
+    setSelectedItems((prevItems) => [...prevItems, item]);
+  };
+
+  const removeFromCompare = (item) => {
+    const filteredItems = selectedItems.filter(
+      (product) => product.id !== item.id
+    );
+    setSelectedItems(filteredItems);
   };
 
   useEffect(() => {
@@ -30,29 +36,22 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
   }, [selectedItems]);
 
   useEffect(() => {
-    if (showModal === true) {
+    if (showModal) {
       // disableBodyScroll(bodyStyle);
     } else {
       enableBodyScroll(bodyStyle);
     }
   }, [showModal]);
 
-  const removeFromCompare = (item) => {
-    const filteredItems = selectedItems.filter(
-      (product) => product.id !== item.id
-    );
-    setSelectedItems((selectedItems) => filteredItems);
-  };
-
   return (
     <>
       <div className="mt-20">
-        <div className="flex flex-col container rounded-lg bg-white xl:w-[95%] max-w-[1280px]">
-          <div className="flex items-center justify-between p-5 ">
+        <div className="flex flex-col container rounded-lg bg-white xl:w-[95%] max-w-[1280px] mx-auto px-4">
+          <div className="flex items-center justify-between p-5">
             <span className="font-bold text-xl">Nước hoa unisex</span>
             <div className="flex items-center gap-x-1 cursor-pointer">
               <span
-                className="text-base text-[#a497a2] font-semibold "
+                className="text-base text-[#a497a2] font-semibold"
                 onClick={() => navigate("/product")}
               >
                 Xem tất cả
@@ -73,7 +72,7 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
               </svg>
             </div>
           </div>
-          <div className="grid-cols-5 grid gap-y-2 pb-10 items-stretch">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pb-10 items-stretch">
             {data.length > 0 &&
               data.map((item, index) => (
                 <ProductItem
@@ -88,7 +87,7 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
               ))}
           </div>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center mt-6">
           <Pagination
             activePage={page}
             nextPageText={">"}
@@ -110,7 +109,7 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
               setShowModal(false);
               setSelectedItems([]);
             }}
-            bodyClassName="w-[1050px] bg-white rounded-lg relative z-10 content  overflow-hidden "
+            bodyClassName="w-[1050px] bg-white rounded-lg relative z-10 content overflow-hidden"
           >
             <div className="overflow-y-auto h-[600px] p-10">
               <table className="table-product items-center table-fixed w-full">
@@ -173,7 +172,6 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
                       </span>
                     </td>
                   </tr>
-
                   <tr>
                     <td className="text-base font-semibold">Giới tính</td>
                     <td>

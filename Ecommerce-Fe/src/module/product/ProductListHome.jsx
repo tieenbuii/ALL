@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import ProdictItem from "../product/ProductItem";
+import React, { useEffect, useState } from "react";
+import ProductItem from "../product/ProductItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, EffectCards } from "swiper";
 import "swiper/css";
@@ -9,19 +9,23 @@ import "swiper/css/effect-cards";
 import { useNavigate } from "react-router-dom";
 import slugify from "slugify";
 import ModalAdvanced from "../../components/Modal/ModalAdvanced";
-import { useState } from "react";
 import { formatPrice } from "../../utils/formatPrice";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
-const ProductListHome = ({ data, bg = "", className = "" }) => {
+const ProductListHome = ({ data, className = "" }) => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const bodyStyle = document.body.style;
-
   const [selectedItems, setSelectedItems] = useState([]);
 
   const addToCompare = (item) => {
-    setSelectedItems((selectedItems) => [...selectedItems, item]);
+    setSelectedItems((prevItems) => [...prevItems, item]);
+  };
+
+  const removeFromCompare = (item) => {
+    setSelectedItems((prevItems) =>
+      prevItems.filter((product) => product.id !== item.id)
+    );
   };
 
   useEffect(() => {
@@ -30,18 +34,10 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
     }
   }, [selectedItems]);
 
-  const removeFromCompare = (item) => {
-    const filteredItems = selectedItems.filter(
-      (product) => product.id !== item.id
-    );
-    setSelectedItems((selectedItems) => filteredItems);
-  };
-
   useEffect(() => {
-    if (showModal === true) {
+    if (showModal) {
       // disableBodyScroll(bodyStyle);
-    }
-    if (showModal === false) {
+    } else {
       enableBodyScroll(bodyStyle);
     }
   }, [showModal]);
@@ -50,27 +46,52 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
     const path = slugify(item.title, { strict: true });
     navigate(`/${path}/${item._id}`);
   };
+
   return (
-    <div className={`${className}`}>
-      <div
-        className={`container xl:w-[95%] max-w-[1280px] ${
-          bg === "bg1" ? 'bg-[url("../images/bg-perfume.png")] h-[460px]' : ""
-        }
-        ${bg === "bg2" ? 'bg-[url("../images/bg-perfume-2.png")] h-[460px]' : ""}
-           bg-no-repeat w-full bg-cover rounded-lg `}
-      >
+    <div className={`mt-20 ${className}`}>
+      <div className="flex flex-col container rounded-lg bg-white xl:w-[95%] max-w-[1280px] mx-auto px-4">
+        <div className="flex items-center justify-between p-5">
+          <span className="font-bold text-xl">Nước hoa unisex</span>
+          <div className="flex items-center gap-x-1 cursor-pointer">
+            <span
+              className="text-base text-[#a497a2] font-semibold"
+              onClick={() => navigate("/product")}
+            >
+              Xem tất cả
+            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </div>
+        </div>
         <Swiper
           modules={[Navigation, Pagination, EffectCards]}
-          slidesPerView={5}
-          slidesPerGroup={5}
+          slidesPerView={2} // Mặc định trên mobile
+          slidesPerGroup={2}
           navigation
           pagination={{ clickable: true }}
-          className={`w-full rounded-lg ${className}`}
+          breakpoints={{
+            640: { slidesPerView: 3, slidesPerGroup: 3 }, // sm
+            768: { slidesPerView: 4, slidesPerGroup: 4 }, // md
+            1024: { slidesPerView: 5, slidesPerGroup: 5 }, // lg
+          }}
+          className="w-full pb-10"
         >
           {data.length > 0 &&
             data.map((item) => (
               <SwiperSlide key={item.id} className="mt-6">
-                <ProdictItem
+                <ProductItem
                   product={item}
                   onClickItem={() => handleClick(item)}
                   selected={selectedItems}
@@ -151,7 +172,6 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
                     </span>
                   </td>
                 </tr>
-
                 <tr>
                   <td className="text-base font-semibold">Giới tính</td>
                   <td>
@@ -273,7 +293,7 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
                   <td className="text-lg font-semibold">Giá tiền</td>
                   <td>
                     <span className="text-lg font-normal flex items-center gap-x-2">
-                      {selectedItems[0]?.promotion}
+                      {formatPrice(selectedItems[0]?.promotion)}
                       {selectedItems[0]?.promotion -
                         selectedItems[1]?.promotion <=
                         0 && (
@@ -314,7 +334,7 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
                             d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                           />
                         </svg>
-                      )}
+                       )}
                     </span>
                   </td>
                 </tr>

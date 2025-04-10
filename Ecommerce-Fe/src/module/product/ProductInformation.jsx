@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import InformationProduct from "./information/InformationProduct";
-import InformationService from "./information/InformationService";
+// import InformationService from "./information/InformationService";
 import ProductDescription from "./information/ProductDescription";
 import ProductParameters from "./information/ProductParameters";
 import BackToTopButton from "../../components/backtotop/BackToTopButton";
@@ -134,7 +134,7 @@ const ProductInformation = () => {
             <div className="flex items-center">
               <Link
                 to="/"
-                className=" text-base text-[#a8b4c9] flex items-center font-medium"
+                className=" text-base text-primary hover:text-tertiary flex items-center font-medium"
               >
                 Trang chủ
                 <svg
@@ -152,17 +152,17 @@ const ProductInformation = () => {
                   />
                 </svg>
               </Link>
-              <span className="text-base text-[#a8b4c9] font-medium">
+              <span className="text-base font-medium">
                 {productId?.title}
               </span>
             </div>
             <div className="ProductDetail">
               <InformationProduct data={productId} />
-              <InformationService />
+              {/* <InformationService /> */}
             </div>
             <div className="ProductDescription">
               <ProductDescription data={productId} />
-              <ProductParameters data={productId} />
+              {/* <ProductParameters data={productId} /> */}
             </div>
 
             <Feedback id={productId?._id} data={productId} />

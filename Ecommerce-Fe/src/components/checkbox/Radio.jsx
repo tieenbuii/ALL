@@ -20,7 +20,7 @@ const Radio = ({ checked, children, control, name, ...rest }) => {
         <div
           className={`w-6 h-6 rounded-full border flex items-center justify-center p-1 ${
             checked
-              ? "bg-primary border-[#BF2929] text-white"
+              ? "bg-hero-gradient border-[#BF2929] text-white"
               : "border-gray-200 text-transparent"
           }`}
         >

@@ -220,12 +220,12 @@ const InformationDetailOrder = () => {
                   )}
                   {orderId?.status === "Success" && (
                     <span className="px-2 rounded-lg text-white bg-green-400 text-base">
-                      Hoàn thành
+                      Đã giao
                     </span>
                   )}
                   {orderId?.status === "WaitingGoods" && (
                     <span className="px-2 rounded-lg text-white bg-yellow-400">
-                      Đợi lấy hàng
+                      Đang giao
                     </span>
                   )}
                 </div>

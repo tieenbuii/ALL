@@ -37,13 +37,12 @@ const schema = yup.object({
     .required("Vui lòng chọn ngày sinh")
     .nullable()
     .max(today, "Ngày sinh không hợp lệ"),
-  gender: yup.string().oneOf(["nam", "nữ", "khác"], "Vui lòng chọn giới tính"),
+  gender: yup.string().oneOf(["nam", "nữ"], "Vui lòng chọn giới tính"),
 });
 
 const Gender = {
   NAM: "nam",
   NU: "nữ",
-  Diff: "khác",
 };
 
 const UserAccount = () => {
@@ -263,15 +262,6 @@ const UserAccount = () => {
                   onClick={() => setValue("gender", "nu")}
                 >
                   Nữ
-                </Radio>
-                <Radio
-                  name="gender"
-                  control={control}
-                  checked={watchGender === Gender.Diff}
-                  value={Gender.Diff}
-                  onClick={() => setValue("gender", "khac")}
-                >
-                  Khác
                 </Radio>
               </FieldCheckboxes>
               {errors.gender && (

@@ -13,5 +13,11 @@ const productApi = {
     const url = `/api/v1/brands`;
     return axiosClient.get(url);
   },
+  // Thêm API cho categories
+  getCategory() {
+    const url = `/api/v1/categories`;
+    return axiosClient.get(url);
+  },
 };
+
 export default productApi;

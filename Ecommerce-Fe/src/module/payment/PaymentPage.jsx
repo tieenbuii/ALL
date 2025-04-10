@@ -50,7 +50,11 @@ const PaymentPage = () => {
     setPayPal(true);
     setCash(false);
   };
-
+  const payWithVnPay = () => {
+    setPaymentMethod("vnpay");
+    setPayPal(true);
+    setCash(false);
+  };
   const handleClick = async () => {
     if (data === undefined) {
       toast.dismiss();
@@ -221,7 +225,7 @@ const PaymentPage = () => {
                   </span>
                 </div>
                 <button
-                  className="bg-primary text-white rounded-lg font-medium text-sm mx-3 py-3 mt-5"
+                  className="bg-hero-gradient text-white rounded-lg font-medium text-sm mx-3 py-3 mt-5"
                   onClick={handleClick}
                 >
                   THANH TOÁN

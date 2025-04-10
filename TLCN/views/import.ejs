@@ -1,11 +1,11 @@
 <% layout('base') -%>
     <div class="container">
-        <h1 class="my-4 text-center text-primary">Imports</h1>
+        <h1 class="my-4 text-center text-primary">Nhập hàng</h1>
         <div class="card">
             <div class="card-header">
                 <div class="row">
                     <div class="col col-sm-9 text-dark">
-                        <h4><strong>List Imports</strong></h4>
+                        <h4><strong>Danh sách nhập</strong></h4>
                     </div>
                     <div class="col col-sm-3">
                         <button type="button" id="add_data" class="btn btn-success btn-sm float-end">Add</button>
@@ -17,11 +17,11 @@
                     <table class="table table-bordered table-hover" id="sample_data">
                         <thead>
                             <tr>
-                                <th>Importer</th>
-                                <th>Product</th>
-                                <th>Total Price</th>
-                                <th>CreatedAt</th>
-                                <th>Action</th>
+                                <th>Người nhập</th>
+                                <th>Sản phẩm</th>
+                                <th>Tổng tiền</th>
+                                <th>Nhập lúc</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-2">
-                            <label class="form-label">Products</label>
+                            <label class="form-label">Sản phẩm</label>
                             <select id="invoice_items" name="invoices[]" multiple="multiple">
                             </select>
                         </div>
@@ -55,8 +55,8 @@
                     <div class="modal-footer">
                         <input type="hidden" name="id" id="id" />
                         <input type="hidden" name="action" id="action" value="Add" />
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="action_button">Add</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng (không nhập)</button>
+                        <button type="submit" class="btn btn-primary" id="action_button">Nhập hàng</button>
                     </div>
                 </form>
             </div>

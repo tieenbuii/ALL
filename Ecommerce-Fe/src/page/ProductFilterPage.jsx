@@ -4,13 +4,12 @@ import FilterProduct from "../module/filter/FilterProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { action_status } from "../utils/constants/status";
 import { useEffect } from "react";
-import { getBrand, getProductFilter } from "../redux/product/productSlice";
+import { getBrand, getProductFilter, getCategory } from "../redux/product/productSlice"; // Thêm getCategory
 import { useState } from "react";
 import Pagination from "react-js-pagination";
 import FilterSort from "../module/filter/FilterSort";
 import queryString from "query-string";
 import FilterPrice from "../module/filter/FilterPrice";
-import { categoryData } from "../api/categoryData";
 import Accordion from "../components/accordion/Accordion";
 import Filter from "../components/filter/Filter";
 import { originData } from "../api/originData";
@@ -21,8 +20,15 @@ import SkeletonItem from "../components/skeleton/SkeletonItem";
 
 const ProductFilterPage = () => {
   const params = queryString.parse(location.search);
-  const { productFilter, statusFilter, totalPageFilter, statusBrand, brand } =
-    useSelector((state) => state.product);
+  const { 
+    productFilter, 
+    statusFilter, 
+    totalPageFilter, 
+    statusBrand, 
+    brand,
+    category, // Thêm category từ state
+    statusCategory // Thêm statusCategory từ state
+  } = useSelector((state) => state.product);
   const keyword = localStorage.getItem("keyword");
 
   const queryParams = useMemo(() => {
@@ -66,10 +72,13 @@ const ProductFilterPage = () => {
       if (statusBrand === action_status.IDLE) {
         dispatch(getBrand());
       }
+      if (statusCategory === action_status.IDLE) { // Thêm logic để gọi API categories
+        dispatch(getCategory());
+      }
     } catch (error) {
       console.log(error.message);
     }
-  }, []);
+  }, [statusBrand, statusCategory, dispatch]);
 
   const initFilter = {
     brand: params?.brand?.split(",") || [],
@@ -220,9 +229,9 @@ const ProductFilterPage = () => {
             </span>
           </div>
           <div className="wrapper-product">
-            {statusBrand === action_status.LOADING && (
+            {statusBrand === action_status.LOADING && statusCategory === action_status.LOADING && (
               <>
-                <div className="product-filter w-full  bg-white rounded-lg flex flex-col items-start">
+                <div className="product-filter w-full bg-white rounded-lg flex flex-col items-start">
                   <Skeleton className="h-3 w-1/2 rounded-lg ml-4" />
                   <div className="flex items-center justify-between p-4">
                     <Skeleton className="h-2 w-1/4 rounded-md" />
@@ -296,10 +305,10 @@ const ProductFilterPage = () => {
                 </div>
               </>
             )}
-            {statusBrand === action_status.SUCCEEDED && (
+            {(statusBrand === action_status.SUCCEEDED || statusCategory === action_status.SUCCEEDED) && (
               <>
                 {" "}
-                <div className="product-filter w-full  bg-white rounded-lg flex flex-col  text-black">
+                <div className="product-filter w-full bg-white rounded-lg flex flex-col text-black">
                   <FilterPrice onChange={handleChangePrice} />
                   <Accordion title="Thương hiệu" className="true">
                     {brand.length > 0 &&
@@ -317,8 +326,8 @@ const ProductFilterPage = () => {
                       })}
                   </Accordion>
                   <Accordion title="Danh mục" className="true">
-                    {categoryData.length > 0 &&
-                      categoryData.map((item) => {
+                    {category.length > 0 && // Thay categoryData bằng category từ API
+                      category.map((item) => {
                         return (
                           <Filter
                             label={item.name}

@@ -164,16 +164,15 @@ const Feelback = ({ id, data }) => {
             <div className="flex flex-col items-center gap-y-5 py-5">
               <span className="text-xl ">Bạn đánh giá sao sản phẩm này</span>
               <button
-                className="text-lg py-3 px-10 rounded-lg font-medium text-white bg-primary"
+                className="text-lg py-3 px-10 rounded-lg font-medium text-white bg-hero-gradient"
                 onClick={handleClick}
               >
                 Đánh giá ngay
               </button>
             </div>
-
             <FeedbackList data={feedback.data} />
           </div>
-          <div className="flex justify-center items-center mt-2">
+          {/* <div className="flex justify-center items-center mt-2">
             <Pagination
               activePage={page}
               nextPageText={">"}
@@ -185,8 +184,8 @@ const Feelback = ({ id, data }) => {
               linkClass="page-num"
               onChange={handlePageClick}
             />
-          </div>
-          <ModalAdvanced
+          </div> */}
+          <ModalAdvanced 
             visible={showModal}
             onClose={() => {
               setShowModal(false);

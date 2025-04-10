@@ -33,7 +33,7 @@ const PaymentCash = () => {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-[200px] h-[200px] text-orange-400"
+          className="w-[200px] h-[200px] text-primary"
         >
           <path
             strokeLinecap="round"
@@ -60,7 +60,7 @@ const PaymentCash = () => {
           </div>
         </div>
         <button
-          className="mt-5 py-3 px-4 text-white bg-[#1435c3] rounded-lg "
+          className="mt-5 py-3 px-4 text-white bg-hero-gradient rounded-lg "
           onClick={() => navigate("/account/orders")}
         >
           Xem chi tiết đơn hàng

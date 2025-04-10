@@ -154,7 +154,7 @@ const CartPage = () => {
                 </div>
                 {!isLoggedIn ? (
                   <button
-                    className="bg-primary text-white rounded-lg flex flex-col items-center mx-auto py-2 mt-4 w-full"
+                    className="bg-hero-gradient text-white rounded-lg flex flex-col items-center mx-auto py-2 mt-4 w-full"
                     type="button"
                     onClick={handleClick}
                   >
@@ -165,7 +165,7 @@ const CartPage = () => {
                   </button>
                 ) : (
                   <button
-                    className=" bg-primary text-white rounded-lg mx-auto py-2 mt-4 w-full"
+                    className=" bg-hero-gradient text-white rounded-lg mx-auto py-2 mt-4 w-full"
                     onClick={handleCheckout}
                   >
                     <span className="font-medium text-base ">TIẾP TỤC</span>

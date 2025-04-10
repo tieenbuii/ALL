@@ -17,5 +17,11 @@ const orderApi = {
     const url = `/api/v1/orders/${id}`;
     return axiosClient.get(url);
   },
-};
+  createVNPayPayment: async (paymentData) => {
+    return await axios.post("/api/payment/vnpay/create", paymentData);
+  },
+  returnPaymentStatus: async (data) => {
+    return await axios.post("/api/payment/vnpay/return", data);
+  }};
+
 export default orderApi;

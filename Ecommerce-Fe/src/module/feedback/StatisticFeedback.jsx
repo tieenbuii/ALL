@@ -1,5 +1,6 @@
 import React from "react";
 import ProgressBar from "../../components/progressbar/ProgressBar";
+import { Rate } from 'antd';
 import { FaStar } from "react-icons/fa";
 
 const StatisticFeedback = ({ data }) => {
@@ -9,9 +10,15 @@ const StatisticFeedback = ({ data }) => {
       <div className="flex flex-col items-center justify-center border-r-2 border-solid">
         <span className="text-3xl font-bold">{data.ratingsAverage} / 5</span>
         <span className="flex items-center justify-center gap-x-3 mt-3">
-          {stars.map((item, index) => (
-            <FaStar key={index} color="#ffba5a" size={20} />
-          ))}
+          {/* {stars.map((item, index) => (
+            <FaStar
+              key={index}
+              size={18}
+              color={data.ratingsAverage > index ? 'orange' : 'gray'}
+            />  
+            // <FaStar key={index} color="#ffba5a" size={20} />
+          ))} */}
+          <Rate allowHalf defaultValue={4.5} disabled />
         </span>
         <span className="mt-3 text-xl">
           {data.ratingsQuantity} đánh giá và nhận xét

@@ -17,7 +17,7 @@ const ProductParameters = ({ data }) => {
           </tr>
           <tr>
             <td>Nồng độ</td>
-            <td>{data?.concentration}</td>
+            <td>{data?.concentration}</td>  
           </tr>
           <tr>
             <td>Xuất xứ</td>

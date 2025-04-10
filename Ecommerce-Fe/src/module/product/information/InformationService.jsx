@@ -3,14 +3,14 @@ import React from "react";
 const InformationService = () => {
   return (
     <div className="Information-service bg-white w-full flex flex-col rounded-xl py-5 px-5">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center mb-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-6 h-6 text-tertiary"
+          className="w-6 h-6 text-primary mr-2"
         >
           <path
             strokeLinecap="round"
@@ -18,8 +18,8 @@ const InformationService = () => {
             d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"
           />
         </svg>
-        <span className="text-base font-medium text-tertiary">
-          Sản phẩm được miễn phí giao hàng
+        <span className="text-base font-medium">
+          Freeship toàn quốc
         </span>
       </div>
       <span className="w-full border-dotted border-2 mb-4"></span>
@@ -41,7 +41,7 @@ const InformationService = () => {
             d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"
           />
         </svg>
-        <span>Miễn phí giao hàng cho đơn hàng từ 800K</span>
+        <span>Miễn phí giao hàng cho đơn hàng từ 2 triệu</span>
       </div>
       <div className="flex items-center  mb-4 gap-x-8">
         <svg
@@ -77,7 +77,9 @@ const InformationService = () => {
           />
         </svg>
 
-        <span>Đổi trả trong vòng 10 ngày</span>
+        <span>
+          Cho phép đổi trả trong 7-14 ngày (nếu sản phẩm chưa sử dụng).
+        </span>
       </div>
       <span className="text-lg font-medium text-gray-500 mb-4">
         Dịch vụ khác
@@ -98,7 +100,7 @@ const InformationService = () => {
           />
         </svg>
 
-        <span>Sữa chữa đồng giá 150.000d.</span>
+        <span>Sữa chữa đồng giá 150.000đ.</span>
       </div>
       <div className="flex items-center  mb-4 gap-x-8">
         <svg

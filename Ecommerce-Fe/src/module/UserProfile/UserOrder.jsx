@@ -72,7 +72,7 @@ const UserOrder = () => {
           <button
             className={`flex items-center gap-x-3 cursor-pointer py-2 px-4 text-base font-medium rounded-lg border border-gray-300 ${
               state === "All" || state === undefined
-                ? "bg-primary text-white"
+                ? "bg-hero-gradient text-white"
                 : ""
             }`}
             value="All"
@@ -82,7 +82,7 @@ const UserOrder = () => {
           </button>
           <button
             className={`flex items-center gap-x-3 cursor-pointer py-2 px-4 text-base font-medium rounded-lg border border-gray-300 ${
-              state === "Processed" ? "bg-primary text-white" : ""
+              state === "Processed" ? "bg-hero-gradient text-white" : ""
             }`}
             value="Processed"
             onClick={handleClick}
@@ -91,30 +91,30 @@ const UserOrder = () => {
           </button>
           <button
             className={`flex items-center gap-x-3 cursor-pointer py-2 px-4 text-base font-medium rounded-lg border border-gray-300 ${
-              state === "WaitingGoods" ? "bg-primary text-white" : ""
+              state === "WaitingGoods" ? "bg-hero-gradient text-white" : ""
             }`}
             value="WaitingGoods"
             onClick={handleClick}
           >
-            Đợi lấy hàng
+            Đang giao
           </button>
           <button
             className={`flex items-center gap-x-3 cursor-pointer py-2 px-4 text-base font-medium rounded-lg border border-gray-300 ${
-              state === "Success" ? "bg-primary text-white" : ""
+              state === "Success" ? "bg-hero-gradient text-white" : ""
             }`}
             value="Success"
             onClick={handleClick}
           >
-            Hoàn thành
+            Đã giao
           </button>
           <button
             className={`flex items-center gap-x-3 cursor-pointer py-2 px-4 text-base font-medium rounded-lg border border-gray-300  ${
-              state === "Cancelled" ? "bg-primary text-white" : ""
+              state === "Cancelled" ? "bg-hero-gradient text-white" : ""
             }`}
             value="Cancelled"
             onClick={handleClick}
           >
-            Đã hủy đơn
+            Hủy
           </button>
         </div>
       </div>
@@ -234,7 +234,7 @@ const UserOrder = () => {
                               {item._id.slice(0, 10)}
                             </td>
                             <td>
-                              {format(new Date(item?.createdAt), "HH:mm")}
+                              {/* {format(new Date(item?.createdAt), "HH:mm")} */}
                               &nbsp;&nbsp;
                               {format(new Date(item?.createdAt), "dd/MM/yyyy")}
                             </td>
@@ -247,24 +247,24 @@ const UserOrder = () => {
                                 </span>
                               </td>
                             )}
-                            {item?.status === "Waiting Goods" && (
+                            {item?.status === "WaitingGoods" && (
                               <td>
                                 <span className="p-2 rounded-lg text-white bg-yellow-400">
-                                  Đợi lấy hàng
+                                  Đang giao
                                 </span>
                               </td>
                             )}
                             {item?.status === "Cancelled" && (
                               <td>
                                 <span className="p-2 rounded-lg text-white bg-red-400">
-                                  Đã hủy đơn
+                                  Đã hủy
                                 </span>
                               </td>
                             )}
                             {item?.status === "Success" && (
                               <td>
                                 <span className="p-2 rounded-lg text-white  bg-green-400">
-                                  Thành công
+                                  Đã giao
                                 </span>
                               </td>
                             )}
@@ -287,7 +287,7 @@ const UserOrder = () => {
                               {item._id.slice(0, 10)}
                             </td>
                             <td>
-                              {format(new Date(item?.createdAt), "HH:mm")}
+                              {/* {format(new Date(item?.createdAt), "HH:mm")} */}
                               &nbsp;&nbsp;
                               {format(new Date(item?.createdAt), "dd/MM/yyyy")}
                             </td>
@@ -296,6 +296,36 @@ const UserOrder = () => {
                             <td>
                               <span className="p-2 rounded-lg text-white bg-orange-400">
                                 Đang xử lý
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                    </>
+                  )}
+                  {state === "WaitingGoods" && (
+                    <>
+                      {order?.length > 0 &&
+                        order.map((item) => (
+                          <tr className="text-base" key={item._id}>
+                            <td
+                              className="cursor-pointer text-blue-600 hover:text-blue-900"
+                              onClick={() =>
+                                navigate(`/account/orders/${item._id}`)
+                              }
+                              title={item._id}
+                            >
+                              {item._id.slice(0, 10)}
+                            </td>
+                            <td>
+                              {/* {format(new Date(item?.createdAt), "HH:mm")} */}
+                              &nbsp;&nbsp;
+                              {format(new Date(item?.createdAt), "dd/MM/yyyy")}
+                            </td>
+                            <td>{item.cart[0].product.title.slice(0, 50)}</td>
+                            <td>{formatPrice(item.totalPrice)}</td>
+                            <td>
+                              <span className="p-2 rounded-lg text-white bg-yellow-400">
+                                Đang giao
                               </span>
                             </td>
                           </tr>
@@ -317,7 +347,7 @@ const UserOrder = () => {
                               {item._id.slice(0, 10)}
                             </td>
                             <td>
-                              {format(new Date(item?.createdAt), "HH:mm")}
+                              {/* {format(new Date(item?.createdAt), "HH:mm")} */}
                               &nbsp;&nbsp;
                               {format(new Date(item?.createdAt), "dd/MM/yyyy")}
                             </td>
@@ -326,7 +356,7 @@ const UserOrder = () => {
 
                             <td>
                               <span className="p-2 rounded-lg text-white bg-red-400">
-                                Đã hủy đơn
+                                Đã hủy
                               </span>
                             </td>
                           </tr>
@@ -348,7 +378,7 @@ const UserOrder = () => {
                               {item._id.slice(0, 10)}
                             </td>
                             <td>
-                              {format(new Date(item?.createdAt), "HH:mm")}
+                              {/* {format(new Date(item?.createdAt), "HH:mm")} */}
                               &nbsp;&nbsp;
                               {format(new Date(item?.createdAt), "dd/MM/yyyy")}
                             </td>
@@ -357,7 +387,7 @@ const UserOrder = () => {
 
                             <td>
                               <span className="p-2 rounded-lg text-white  bg-green-400">
-                                Thành công
+                                Đã giao
                               </span>
                             </td>
                           </tr>

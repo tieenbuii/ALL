@@ -33,7 +33,7 @@ const FilterSort = ({ onChange }) => {
       <div className="flex items-center rounded-full  gap-x-5">
         <button
           className={`flex items-center gap-x-3 cursor-pointer py-2 px-3 text-sm font-medium rounded-lg border border-gray-300  ${
-            active === "promotion" ? "bg-primary text-white" : ""
+            active === "promotion" ? "bg-hero-gradient text-white" : ""
           }`}
           value="promotion"
           onClick={handleClick}
@@ -42,7 +42,7 @@ const FilterSort = ({ onChange }) => {
         </button>
         <button
           className={`flex items-center gap-x-3 cursor-pointer py-2 px-3 text-sm font-medium rounded-lg border border-gray-300 ${
-            active === "-promotion" ? "bg-primary text-white" : ""
+            active === "-promotion" ? "bg-hero-gradient text-white" : ""
           }`}
           value="-promotion"
           onClick={handleClick}

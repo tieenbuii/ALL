@@ -36,6 +36,12 @@ const loadData = async () => {
           },
         },
         {
+          data: "role",
+          render: function (data) {
+            return '<div class= "my-3">' + data + "</div>";
+          },
+        },
+        {
           data: "active",
           render: function (data) {
             return '<div class= "my-3">' + data + "</div>";
@@ -85,7 +91,7 @@ $("#add_data").click(function () {
 $(document).on("click", ".edit", function () {
   const id = $(this).data("id");
 
-  $("#dynamic_modal_title").text("Edit User");
+  $("#dynamic_modal_title").text("Phân quyền");
 
   $("#action").val("Edit");
 
@@ -100,7 +106,7 @@ $(document).on("click", ".edit", function () {
     method: "GET",
     success: function (data) {
       const user = data.data.data;
-      $("#name").val(user.name);
+      $("#name").val(user.role);
       $("#id").val(user._id);
     },
   });

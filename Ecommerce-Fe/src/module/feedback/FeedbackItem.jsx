@@ -66,7 +66,7 @@ const FeedbackItem = ({ data }) => {
   };
   return (
     <>
-      <div className="flex flex-col w-[1200px] mx-auto mt-5">
+      <div className="flex flex-col mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start gap-x-5">
             <img
@@ -89,8 +89,8 @@ const FeedbackItem = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="w-[1100px] bg-[#f3f4f6] mt-3 rounded-lg mx-auto flex flex-col p-5  justify-between gap-y-4">
-          <div className="flex items-center justify-start ">
+        <div className="w-full bg-[#f3f4f6] mt-3 mb-5 rounded-lg mx-auto flex flex-col p-5  justify-between gap-y-4">
+          {/* <div className="flex items-center justify-start ">
             <span className="text-base font-medium">Đánh giá: </span> &nbsp;
             <span className="flex items-center gap-x-2">
               {stars?.length > 0 &&
@@ -102,12 +102,22 @@ const FeedbackItem = ({ data }) => {
                   />
                 ))}
             </span>
-          </div>
+          </div> */}
           <div className="flex items-center justify-start gap-x-2 flex-wrap">
-            <span className="text-base font-medium">Nhận xét:</span>
+            {/* <span className="text-base font-medium">Nhận xét:</span> */}
+            <span className="flex items-center gap-x-2">
+              {stars?.length > 0 &&
+                stars.map((item, index) => (
+                  <FaStar
+                    key={index}
+                    size={18}
+                    color={data.rating > index ? colors.orange : colors.gray}
+                  />
+                ))}
+            </span>
             <span className="break-all">{data?.review}</span>
           </div>
-          {current?._id === data?.user?._id && (
+          {/* {current?._id === data?.user?._id && (
             <div className="flex items-center justify-end gap-x-4">
               <div
                 className="flex items-center justify-end gap-x-2 cursor-pointer text-blue-500 hover:text-blue-700"
@@ -153,7 +163,7 @@ const FeedbackItem = ({ data }) => {
                 <span className="text-base font-medium">Xóa</span>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <ModalAdvanced

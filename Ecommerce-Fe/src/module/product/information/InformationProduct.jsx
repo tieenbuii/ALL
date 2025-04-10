@@ -11,8 +11,8 @@ const InformationProduct = ({ data }) => {
   const [activeThumb, setActiveThumb] = useState();
 
   return (
-    <div className="Information-product bg-white rounded-xl py-8 px-2">
-      <div className="product-image">
+    <div className="flex gap-2 bg-white rounded-xl py-8 px-4">
+      <div className="w-5/12  mr-8">
         <Swiper
           loop={true}
           spaceBetween={10}
@@ -22,20 +22,19 @@ const InformationProduct = ({ data }) => {
           effect="fade"
           autoplay={{ delay: 5000, disableOnInteraction: false }}
           thumbs={{ swiper: activeThumb }}
-          className="product-images-slider"
+          className="w-full aspect-[2/1] mb-4 border border-gray-200 rounded-lg"
         >
           {data?.images.map((item, index) => (
             <SwiperSlide key={index}>
-              <img src={item} alt="" />
+              <img src={item} alt="" className="w-full h-full object-contain" />
             </SwiperSlide>
           ))}
         </Swiper>
 
         <Swiper
           onSwiper={setActiveThumb}
-          loop={true}
           spaceBetween={10}
-          slidesPerView={5}
+          slidesPerView={6.5}
           modules={[Navigation, Thumbs]}
           className="product-images-slider-thumbs"
         >

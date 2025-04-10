@@ -37,10 +37,10 @@ const CartHollow = () => {
           />
           <span className="text-[#969594] text-base">
             Giỏ hàng chưa có sản phẩm nào
-          </span>
+          </span> 
         </div>
         <button
-          className="bg-primary px-3 py-2 mt-5  rounded-lg"
+          className="bg-hero-gradient px-3 py-2 mt-5  rounded-lg hover:text-secondary"
           type="button"
           onClick={() => navigate("/")}
         >
